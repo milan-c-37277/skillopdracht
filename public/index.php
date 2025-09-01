@@ -26,7 +26,7 @@ $result = $conn->query($sql);
     <div class="contact-info">
       Interested?<br>
       Drop us an email at:<br>
-      newbusiness@livingshapes.eu
+      <a class="email" href="mailto:newbusiness@livingshapes.eu">newbusiness@livingshapes.eu</a>
     </div>
   </aside>
 
@@ -44,55 +44,54 @@ $result = $conn->query($sql);
   </main>
 
   <script>
-const container = document.querySelector('.grid-container');
-let draggedItem = null;
+    const container = document.querySelector('.grid-container');
+    let draggedItem = null;
 
-container.addEventListener('dragstart', (e) => {
-  const project = e.target.closest('.project');
-  if (!project) return;
+    container.addEventListener('dragstart', (e) => {
+      const project = e.target.closest('.project');
+      if (!project) return;
 
-  draggedItem = project;
-  draggedItem.classList.add('dragging');
-  e.dataTransfer.effectAllowed = 'move';
-  e.dataTransfer.setData('text/plain', '');
-});
+      draggedItem = project;
+      draggedItem.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', '');
+    });
 
-container.addEventListener('dragover', (e) => {
-  e.preventDefault();
+    container.addEventListener('dragover', (e) => {
+      e.preventDefault();
 
-  const target = e.target.closest('.project');
-  if (!target || !draggedItem || target === draggedItem) return;
+      const target = e.target.closest('.project');
+      if (!target || !draggedItem || target === draggedItem) return;
 
-  const children = Array.from(container.querySelectorAll('.project'));
-  const draggedIndex = children.indexOf(draggedItem);
-  const targetIndex = children.indexOf(target);
+      const children = Array.from(container.querySelectorAll('.project'));
+      const draggedIndex = children.indexOf(draggedItem);
+      const targetIndex = children.indexOf(target);
 
-  if (draggedIndex < targetIndex) {
-    if (target.nextElementSibling) {
-      container.insertBefore(draggedItem, target.nextElementSibling);
-    } else {
-      container.appendChild(draggedItem);
-    }
-  } else {
-    container.insertBefore(draggedItem, target);
-  }
-});
+      if (draggedIndex < targetIndex) {
+        if (target.nextElementSibling) {
+          container.insertBefore(draggedItem, target.nextElementSibling);
+        } else {
+          container.appendChild(draggedItem);
+        }
+      } else {
+        container.insertBefore(draggedItem, target);
+      }
+    });
 
-container.addEventListener('drop', (e) => {
-  e.preventDefault();
-  if (draggedItem) {
-    draggedItem.classList.remove('dragging');
-    draggedItem = null;
-  }
-});
+    container.addEventListener('drop', (e) => {
+      e.preventDefault();
+      if (draggedItem) {
+        draggedItem.classList.remove('dragging');
+        draggedItem = null;
+      }
+    });
 
-container.addEventListener('dragend', () => {
-  if (draggedItem) {
-    draggedItem.classList.remove('dragging');
-    draggedItem = null;
-  }
-});
-
+    container.addEventListener('dragend', () => {
+      if (draggedItem) {
+        draggedItem.classList.remove('dragging');
+        draggedItem = null;
+      }
+    });
   </script>
 </body>
 </html>

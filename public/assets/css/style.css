@@ -53,6 +53,15 @@ aside {
   color: #666;
 }
 
+.email {
+  color: #666;
+  text-decoration: none;
+}
+
+.email:hover {
+  text-decoration: underline;
+}
+
 main.grid-container {
   flex-grow: 1;
   display: grid;
